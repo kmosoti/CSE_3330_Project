@@ -23,40 +23,32 @@ var connection = new Connection(config);
 //     executeStatement()
 // });
 
-const tedious_select = () => {
-    const requestResponse = []
-    connection.on('connect', function(err){
-        //if no error, then we are good to go.
-        if(err){
-            console.log(err);
-        }else{
-            var request = new Request("SELECT * FROM ARTIST", function(err, rowCount, rows){
-                console.log(rowCount + ' rows');
-            })
-        }
-        //console.log(rowCount)
-        //requestResponse = []
-        request.on('row', function(columns) {
-            var rowJson = {}
-            columns.forEach(function(column) {
-                rowJson[""+column.metadata.colName+""] = ""+column.value+""
-                //console.log(column)
-            });
-            requestResponse.push(rowJson)
-        //console.log(requestResponse)
+connection.on('connect', function(err){
+    //if no error, then we are good to go.
+    if(err){
+        console.log(err);
+    }else{
+        var request = new Request("SELECT * FROM ARTIST where aid = 1", function(err, rowCount, rows){
+            console.log(rowCount + ' rows');
+        })
+    }
+    requestResponse = []
+    request.on('row', function(columns) {
+        //rowJson = []
+        columns.forEach(function(column) {
+            console.log(column)
         });
-        //console.log(requestResponse)
-        request.on("requestCompleted", function (rowCount, more) {
-            console.log(requestResponse)
-            connection.close();
-        });
-        connection.execSql(request);
+        requestResponse.push(rowJson)
     });
-    connection.connect();
-    return requestResponse
-}
 
-tedious_select()
+    request.on("requestCompleted", function (rowCount, more) {
+        connection.close();
+    });
+    connection.execSql(request);
+});
+connection.connect();
+
+
 
 // function executeStatement() {  
 //     request = new Request("SELECT * FROM ARTIST", function(err) {  

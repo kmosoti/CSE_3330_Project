@@ -1,9 +1,12 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup'
-import displayTable from './functionclasses/displayTable';
-import { FormatColorReset } from '@mui/icons-material';
+import * as React from 'react';
+import { TextField } from '@mui/material';
 
+import DisplayTable from './functionclasses/DisplayTable';
+import InsertTable from './functionclasses/InsertTable';
+import UpdateTable from './functionclasses/UpdateTable';
+import DeleteTable from './functionclasses/DeleteTable';
 
 class Form extends React.Component{
     state = {
@@ -56,7 +59,16 @@ class Form extends React.Component{
                                     <Button onClick={this.handleDELETE}>DELETE</Button>
                                 </ButtonGroup>
                             </div>
+                            <div>
                             <h3>Display Table</h3>
+                                {/* <TextField id="standard-basic" label="Artist ID" variant="standard" />
+                                <TextField id="standard-basic" label="Name" variant="standard" />
+                                <TextField id="standard-basic" label="Commission Rate" variant="standard" />      */}
+                            </div>
+
+                            <div>
+                                <DisplayTable/>
+                            </div>
                         </div>
                         );
                 }
@@ -72,7 +84,13 @@ class Form extends React.Component{
                                 <Button onClick={this.handleDELETE}>DELETE</Button>
                             </ButtonGroup>
                         </div>
-                        <h3>Insert Record</h3>
+                        <div>
+                            <h3>Insert Record</h3>          
+                        </div>
+                        <br/>
+                        <div>
+                            <InsertTable/>
+                        </div>
                     </div>
                     );
                 }
@@ -89,6 +107,7 @@ class Form extends React.Component{
                             </ButtonGroup>
                         </div>
                         <h3>Update Record</h3>
+                        <UpdateTable/>
                     </div>
                     );
                 }
@@ -105,6 +124,7 @@ class Form extends React.Component{
                             </ButtonGroup>
                         </div>
                         <h3>Delete Record</h3>
+                        <DeleteTable/>
                     </div>
                     );
                 }
