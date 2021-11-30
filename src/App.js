@@ -1,5 +1,5 @@
 import './App.css';
-import MyForm from './Form';
+import Form from './Form';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         Art Gallery Database
       </header>
       <div className="div1">
-        <MyForm/>
+        <Form/>
       </div>
     </div>
   );
